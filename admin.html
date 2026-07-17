@@ -57,60 +57,91 @@ button{
 <h3>Add Shipment</h3>
 
 <label>Tracking Number</label>
-<input type="text" placeholder="Enter tracking number">
-
+<input id="trackingNumber" type="text" placeholder="Enter tracking number">
 
 <label>Customer Name</label>
-<input type="text" placeholder="Customer name">
-
+<input id="customerName" type="text" placeholder="Customer name">
 
 <label>Shipment Status</label>
-
-<select>
+<select id="status">
 <option>Processing</option>
 <option>Shipped</option>
 <option>In Transit</option>
 <option>Delivered</option>
 </select>
 
-
 <label>Shipment Details</label>
-<textarea placeholder="Enter package details"></textarea>
-
+<textarea id="details" placeholder="Enter package details"></textarea>
 
 <label>Package Picture</label>
-<input type="file">
+<input id="picture" type="file">
 
-
-<button>
+<button onclick="saveShipment()">
 Save Shipment
 </button>
 
-
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-document.querySelector("button").addEventListener("click", function(){
+const SUPABASE_URL = "https://mlgnfcjqqckptpmcbick.supabase.co";
 
-    let tracking = document.querySelectorAll("input")[0].value;
-    let customer = document.querySelectorAll("input")[1].value;
-    let status = document.querySelector("select").value;
-    let details = document.querySelector("textarea").value;
+const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+async function saveShipment(){
+
+    let tracking = document.getElementById("trackingNumber").value;
+    let customer = document.getElementById("customerName").value;
+    let status = document.getElementById("status").value;
+    let details = document.getElementById("details").value;
+
 
     if(tracking === ""){
         alert("Please enter a tracking number");
         return;
     }
 
-    localStorage.setItem("trackingNumber", tracking);
-    localStorage.setItem("customerName", customer);
-    localStorage.setItem("status", status);
-    localStorage.setItem("details", details);
 
-    alert("Shipment saved successfully!");
+    const { error } = await supabaseClient
+    .from("shipments")
+    .insert([
+        {
+            tracking_number: tracking,
+            customer_name: customer,
+            status: status,
+            details: details
+        }
+    ]);
 
-});
+
+    if(error){
+
+        alert("Error saving shipment");
+        console.log(error);
+
+    } else {
+
+        alert("Shipment saved successfully!");
+
+        document.getElementById("trackingNumber").value="";
+        document.getElementById("customerName").value="";
+        document.getElementById("details").value="";
+
+    }
+
+}
 
 </script>
+
 </body>
-  </html>
+</html>
