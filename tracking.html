@@ -10,11 +10,11 @@
 
 <p>Enter your tracking number:</p>
 
-<input type="text" placeholder="Tracking number">
+<input id="trackingNumber" type="text" placeholder="Tracking number">
 
-<button>Track</button>
+<button onclick="trackPackage()">Track</button>
 
-<p>Your shipment status will appear here.</p>
+<p id="result">Your shipment status will appear here.</p>
 <script>
 
 function trackPackage(){
