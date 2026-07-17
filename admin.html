@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Lusyfer Admin Control Center</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    max-width:500px;
+    margin:auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#0059b3;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Lusyfer Control Center</h1>
+
+<h3>Add Shipment</h3>
+
+<label>Tracking Number</label>
+<input type="text" placeholder="Enter tracking number">
+
+
+<label>Customer Name</label>
+<input type="text" placeholder="Customer name">
+
+
+<label>Shipment Status</label>
+
+<select>
+<option>Processing</option>
+<option>Shipped</option>
+<option>In Transit</option>
+<option>Delivered</option>
+</select>
+
+
+<label>Shipment Details</label>
+<textarea placeholder="Enter package details"></textarea>
+
+
+<label>Package Picture</label>
+<input type="file">
+
+
+<button>
+Save Shipment
+</button>
+
+
+</div>
+
+</body>
+  </html>
