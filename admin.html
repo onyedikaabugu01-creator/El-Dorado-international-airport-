@@ -88,6 +88,29 @@ Save Shipment
 
 
 </div>
+<script>
 
+document.querySelector("button").addEventListener("click", function(){
+
+    let tracking = document.querySelectorAll("input")[0].value;
+    let customer = document.querySelectorAll("input")[1].value;
+    let status = document.querySelector("select").value;
+    let details = document.querySelector("textarea").value;
+
+    if(tracking === ""){
+        alert("Please enter a tracking number");
+        return;
+    }
+
+    localStorage.setItem("trackingNumber", tracking);
+    localStorage.setItem("customerName", customer);
+    localStorage.setItem("status", status);
+    localStorage.setItem("details", details);
+
+    alert("Shipment saved successfully!");
+
+});
+
+</script>
 </body>
   </html>
