@@ -15,6 +15,32 @@
 <button>Track</button>
 
 <p>Your shipment status will appear here.</p>
+<script>
 
+function trackPackage(){
+
+    let number = document.getElementById("trackingNumber").value;
+
+    let savedNumber = localStorage.getItem("trackingNumber");
+    let status = localStorage.getItem("status");
+    let details = localStorage.getItem("details");
+
+    if(number === savedNumber){
+
+        document.getElementById("result").innerHTML =
+        "Tracking Number: " + savedNumber +
+        "<br>Status: " + status +
+        "<br>Details: " + details;
+
+    } else {
+
+        document.getElementById("result").innerHTML =
+        "Tracking number not found.";
+
+    }
+
+}
+
+</script>
 </body>
 </html>
